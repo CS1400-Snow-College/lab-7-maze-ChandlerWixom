@@ -1,6 +1,6 @@
 ﻿// Chandler Wixom, 3/18/2025, Lab 7 Maze
-
-Console.WriteLine("This is a maze game\nUse (up, down, left, right) or (w, a, s, d) to move");
+Console.Clear();
+Console.WriteLine("This is a maze game\nUse (up, down, left, right) or (w, a, s, d) to move\nTry to reach the *");
 
 string[] mapRows = File.ReadAllLines("..\\..\\..\\map.txt");
 
@@ -19,8 +19,21 @@ Console.SetCursorPosition(0,0);
 do
 {
     WaitKey();
+    if (mapRows[Console.CursorTop][Console.CursorLeft] == '*')
+    {
+        Console.Clear();
+        Console.WriteLine("You Did It");
+        break;
+    
+    }
 }
 while(WaitKey() != 1);
+Console.Clear();
+
+
+
+
+
 
 
 
@@ -53,6 +66,8 @@ bool Bounds(string[] mazRows, string move)
 
 }
 
+
+// checks if the next move would put you into a wall and returns false if it would
 bool walls(string[] walls, string move)
 {
     int left = Console.CursorLeft;
@@ -85,6 +100,8 @@ bool walls(string[] walls, string move)
 // waits for an imput then checks it to see if its escape if it isnt and it is a movement key it sees if the move is allowed then moves if it is 
 int WaitKey()
 {
+  
+
    var key = Console.ReadKey(true).Key;
 
    if (key == ConsoleKey.Escape) // quit
@@ -119,5 +136,6 @@ int WaitKey()
     {
         return 0;
     }
+    
 }
 
